@@ -7,36 +7,10 @@ import (
 
 // All common errcode
 var (
-	// Not an error; returned on success
-	//
-	// HTTP Mapping: 200 OK
-	OK = addCode(code.Code_OK, http.StatusOK, "") // #0
-	// The operation was cancelled, typically by the caller.
-	//
-	// HTTP Mapping: 499 Client Closed Request
-	Cancelled = addCode(code.Code_CANCELLED, 499, "已取消") // #1
-	// Unknown error.  For example, this error may be returned when
-	// a `Status` value received from another address space belongs to
-	// an error space that is not known in this address space.  Also
-	// errors raised by APIs that do not return enough error information
-	// may be converted to this error.
-	//
-	// HTTP Mapping: 500 Internal Server Error
-	Unknown = addCode(code.Code_UNKNOWN, http.StatusInternalServerError, "未知错误") // #2
-	// The client specified an invalid argument.  Note that this differs
-	// from `FAILED_PRECONDITION`.  `INVALID_ARGUMENT` indicates arguments
-	// that are problematic regardless of the state of the system
-	// (e.g., a malformed file name).
-	//
-	// HTTP Mapping: 400 Bad Request
-	InvalidArgument = addCode(code.Code_INVALID_ARGUMENT, http.StatusBadRequest, "非法输入") // #3
-	// The deadline expired before the operation could complete. For operations
-	// that change the state of the system, this error may be returned
-	// even if the operation has completed successfully.  For example, a
-	// successful response from a server could have been delayed long
-	// enough for the deadline to expire.
-	//
-	// HTTP Mapping: 504 Gateway Timeout
+	OK               = addCode(code.Code_OK, http.StatusOK, "")                                // #0
+	Cancelled        = addCode(code.Code_CANCELLED, 499, "已取消")                                // #1
+	Unknown          = addCode(code.Code_UNKNOWN, http.StatusInternalServerError, "未知错误")      // #2
+	InvalidArgument  = addCode(code.Code_INVALID_ARGUMENT, http.StatusBadRequest, "非法输入")      // #3
 	DeadlineExceeded = addCode(code.Code_DEADLINE_EXCEEDED, http.StatusGatewayTimeout, "超时错误") // #4
 	// Some requested entity (e.g., file or directory) was not found.
 	//
@@ -74,24 +48,7 @@ var (
 	//
 	// HTTP Mapping: 429 Too Many Requests
 	ResourceExhausted = addCode(code.Code_RESOURCE_EXHAUSTED, http.StatusTooManyRequests, "资源耗尽") // #8
-	// The operation was rejected because the system is not in a state
-	// required for the operation's execution.  For example, the directory
-	// to be deleted is non-empty, an rmdir operation is applied to
-	// a non-directory, etc.
-	//
-	// Service implementors can use the following guidelines to decide
-	// between `FAILED_PRECONDITION`, `ABORTED`, and `UNAVAILABLE`:
-	//  (a) Use `UNAVAILABLE` if the client can retry just the failing call.
-	//  (b) Use `ABORTED` if the client should retry at a higher level
-	//      (e.g., when a client-specified test-and-set fails, indicating the
-	//      client should restart a read-modify-write sequence).
-	//  (c) Use `FAILED_PRECONDITION` if the client should not retry until
-	//      the system state has been explicitly fixed.  E.g., if an "rmdir"
-	//      fails because the directory is non-empty, `FAILED_PRECONDITION`
-	//      should be returned since the client should not retry unless
-	//      the files are deleted from the directory.
-	//
-	// HTTP Mapping: 400 Bad Request
+
 	FailedPrecondition = addCode(code.Code_FAILED_PRECONDITION, http.StatusBadRequest, "非预期状态") // #9
 	// The operation was aborted, typically due to a concurrency issue such as
 	// a sequencer check failure or transaction abort.
