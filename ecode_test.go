@@ -14,3 +14,7 @@ func TestNew(t *testing.T) {
 	var _ error = New(-1)
 	Error(0, "this is tesr")
 }
+
+func TestStatus(t *testing.T) {
+	Error(0, "this is testing")
+}
